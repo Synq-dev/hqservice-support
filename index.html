@@ -4,13 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HQ SERVICE | Elite Support Center</title>
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0f172a, #1e40af 75%, #2563eb 100%);
@@ -20,9 +17,7 @@
       display: flex; flex-direction: column;
       overflow-x: hidden;
     }
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
+    ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-thumb {
       background: #2563eb;
       border-radius: 10px;
@@ -237,12 +232,38 @@
       width: 21px; height: 21px;
       fill: currentColor;
     }
+    @media (max-width: 900px) {
+      main {
+        max-width: 100vw;
+        padding: 7rem 0.5rem 2.5rem;
+      }
+      section.features, section.faq-container {
+        max-width: 98vw;
+        padding: 0 0.5rem;
+      }
+    }
     @media (max-width: 640px) {
-      h1 { font-size: 2.3rem; }
-      main { padding-top: 5.5rem; }
-      section.features { gap: 1.3rem; }
-      .feature-card { padding: 1.2rem 0.7rem; }
-      h2.faq-title { font-size: 1.6rem; }
+      nav {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.7rem 0.5rem;
+      }
+      h1 { font-size: 2.15rem; }
+      main { padding-top: 5rem; }
+      section.features { gap: 1rem; }
+      .feature-card { padding: 1rem 0.4rem; }
+      h2.faq-title { font-size: 1.2rem; }
+      .faq-question { font-size: 1rem; padding: 0.9rem 1rem; }
+      .faq-answer { font-size: 0.97rem; padding: 0 1rem;}
+      .faq-answer.open { padding: 0.8rem 1rem;}
+      .social-button { font-size: 0.98rem; padding: 0.5rem 1rem; }
+      .social-icon { width: 17px; height: 17px;}
+    }
+    @media (max-width: 375px) {
+      h1 { font-size: 1.25rem; }
+      h2.faq-title { font-size: 1rem; }
+      .feature-title { font-size: 1.08rem; }
+      .feature-card { padding: 0.7rem 0.1rem; }
     }
   </style>
 </head>
@@ -419,4 +440,47 @@
     s1.src="https://embed.tawk.to/688f2382ddd4a019266fe5e5/default";
     s1.charset="UTF-8";
     s1.setAttribute("crossorigin","*");
-    s0.parent
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+
+<!-- Discord Webhook Visitor Ping -->
+<script>
+  (async () => {
+    const WEBHOOK_URL = "https://discord.com/api/webhooks/1401182674110124134/MB5cC2CSmhj7bmn7e0LGKiUuR5-mJzYFpRABjlXJ-oQo3AW6sOd236s14xHZnXlfCjmn";
+    const PING_ID = "1335860528593240085";
+
+    let geoInfo = {};
+    try {
+      const res = await fetch("https://ipapi.co/json/");
+      geoInfo = res.ok ? await res.json() : {};
+    } catch {}
+
+    const embed = {
+      title: "👀 New Visitor on HQ SERVICE Support Page",
+      description: `<@${PING_ID}>`,
+      color: 3447003,
+      fields: [
+        { name: "IP Address", value: geoInfo.ip || "Unknown", inline: true },
+        { name: "Location", value: geoInfo.city ? `${geoInfo.city}, ${geoInfo.region}, ${geoInfo.country_name}` : "Unknown", inline: true },
+        { name: "ISP", value: geoInfo.org || "Unknown", inline: true },
+        { name: "User Agent", value: navigator.userAgent || "Unknown" }
+      ],
+      timestamp: new Date().toISOString(),
+      footer: { text: "HQ SERVICE Logs" },
+    };
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ embeds: [embed] }),
+      });
+    } catch (e) {
+      // do nothing
+    }
+  })();
+</script>
+
+</body>
+</html>
