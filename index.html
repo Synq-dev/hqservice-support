@@ -3,484 +3,375 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HQ SERVICE | Elite Support Center</title>
+  <title>HQ SERVICE | Support Center</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
-    html { scroll-behavior: smooth; }
+    :root {
+      --primary: #5865F2;
+      --primary-dark: #4752c4;
+      --background: #030712;
+      --surface: #1f2937;
+      --text: #f3f4f6;
+      --text-secondary: #94a3b8;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--background);
+    }
+
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e40af 75%, #2563eb 100%);
-      color: #e0e7ff;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      line-height: 1.5;
       min-height: 100vh;
-      margin: 0; padding: 0;
-      display: flex; flex-direction: column;
-      overflow-x: hidden;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at top, #1e1b4b 0%, #020617 50%);
     }
-    ::-webkit-scrollbar { width: 8px; }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
     ::-webkit-scrollbar-thumb {
-      background: #2563eb;
-      border-radius: 10px;
-      border: 2px solid transparent;
-      background-clip: content-box;
+      background: var(--primary);
+      border-radius: 24px;
     }
-    header {
-      position: fixed; top: 0; left: 0; width: 100%;
-      z-index: 1000;
-      background: rgba(15,23,42,0.85);
-      backdrop-filter: blur(20px) saturate(200%);
-      box-shadow: 0 0 16px #2563eb66;
-      transition: background 0.3s;
+
+    .navbar {
+      background: rgba(3, 7, 18, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(88, 101, 242, 0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 50;
     }
-    #logo-img {
-      filter: drop-shadow(0 0 6px #3b82f6);
-      transition: filter 0.3s;
-      height: 44px; width: 44px;
-    }
-    #logo-img:hover {
-      filter: drop-shadow(0 0 16px #60a5fa);
-    }
-    nav {
+
+    .nav-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0.75rem 1.25rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
     }
-    .btn-primary {
-      background: linear-gradient(90deg, #2563eb 20%, #60a5fa 100%);
-      color: #fff;
-      font-weight: 700;
-      padding: 0.5rem 1.5rem;
-      border-radius: 9999px;
-      box-shadow: 0 4px 16px #2563eb99;
-      transition: all 0.3s;
-      display: inline-flex; align-items: center; gap: 0.5rem;
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       text-decoration: none;
-      font-size: 1rem;
-      position: relative;
-      overflow: hidden;
+      transition: opacity 0.3s ease;
     }
+
+    .logo-wrapper:hover {
+      opacity: 0.9;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: 40px;
+      filter: drop-shadow(0 0 8px rgba(88, 101, 242, 0.5));
+      transition: filter 0.3s ease;
+    }
+
+    .logo-img:hover {
+      filter: drop-shadow(0 0 12px rgba(88, 101, 242, 0.8));
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.3);
+    }
+
     .btn-primary:hover {
-      background: linear-gradient(90deg, #60a5fa 0%, #2563eb 80%);
-      box-shadow: 0 0 24px #60a5fa;
-      transform: translateY(-2px) scale(1.03);
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(88, 101, 242, 0.4);
     }
-    main {
-      padding: 7rem 1rem 3rem;
+
+    .hero {
+      padding: 8rem 1rem 4rem;
       text-align: center;
-      flex: 1 0 auto;
-      display: flex; flex-direction: column; justify-content: center;
-      background: linear-gradient(135deg, #0f172a 70%, #1e40af 100%);
-      color: #fff;
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
     }
-    h1 {
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 800;
-      font-size: 3.75rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 15px #2563eb;
-      user-select: none;
-      letter-spacing: -2px;
+      background: linear-gradient(to right, #f3f4f6, #5865F2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
     }
-    p {
-      font-weight: 500;
-      font-size: 1.2rem;
-      color: #bfdbfe;
-      margin-bottom: 2rem;
-      max-width: 640px;
-      margin-left: auto;
-      margin-right: auto;
-      user-select: none;
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin: 0 auto 2rem;
     }
-    section.features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-      gap: 2.2rem;
-      max-width: 1000px;
-      margin: 3rem auto 0;
-      padding: 0 1rem;
+
+    .faq {
+      padding: 4rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .feature-card {
-      background: rgba(31,41,55,0.80);
-      border-radius: 1.25rem;
-      padding: 2.2rem 1.5rem;
+
+    .faq-title {
       text-align: center;
-      box-shadow: 0 0 32px #2563eb33;
-      transition: box-shadow 0.3s, transform 0.25s;
-      user-select: none;
-    }
-    .feature-card:hover, .feature-card:focus {
-      box-shadow: 0 0 36px #60a5fa;
-      transform: scale(1.035);
-      outline: 2px solid #60a5fa44;
-    }
-    .feature-icon {
-      width: 60px; height: 60px;
-      stroke: #60a5fa;
-      margin-bottom: 1.15rem;
-    }
-    .feature-title {
-      font-weight: 700;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #c7d2fe;
-    }
-    .feature-desc {
-      color: #bfdbfe;
-      font-weight: 400;
-      font-size: 1.04rem;
-      line-height: 1.5;
-    }
-    section.faq-container {
-      max-width: 700px;
-      margin: 4rem auto 6rem;
-      padding: 0 1rem;
-      user-select: none;
-    }
-    h2.faq-title {
-      font-weight: 800;
       font-size: 2.5rem;
-      margin-bottom: 2.5rem;
-      text-align: center;
-      color: #e0e7ff;
-      text-shadow: 0 0 10px #2563eb;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      background: linear-gradient(to right, #f3f4f6, #5865F2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
+
     .faq-item {
-      background: rgba(31,41,55,0.68);
-      margin-bottom: 1.2rem;
-      border-radius: 0.85rem;
+      background: rgba(31, 41, 55, 0.5);
+      border: 1px solid rgba(88, 101, 242, 0.1);
+      border-radius: 12px;
+      margin-bottom: 1rem;
       overflow: hidden;
-      box-shadow: 0 0 15px #2563eb40;
-      transition: box-shadow 0.3s;
     }
+
     .faq-question {
-      padding: 1.1rem 1.5rem;
+      padding: 1.25rem;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--text);
       font-weight: 600;
-      font-size: 1.14rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      color: #bfdbfe;
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      transition: background 0.24s;
-      user-select: none;
+      transition: all 0.3s ease;
     }
-    .faq-question:hover, .faq-question.open {
-      background-color: #2563eb;
-      color: #fff;
+
+    .faq-question:hover {
+      background: rgba(88, 101, 242, 0.1);
     }
-    .faq-question svg {
-      transition: transform 0.3s, stroke 0.3s;
-      stroke: #bfdbfe;
-      width: 20px; height: 20px;
-    }
-    .faq-question.open svg {
-      transform: rotate(45deg);
-      stroke: #fff;
-    }
+
     .faq-answer {
       max-height: 0;
-      padding: 0 1.5rem;
-      color: #cbd5e1;
-      font-weight: 400;
-      font-size: 1.04rem;
-      line-height: 1.55;
       overflow: hidden;
-      transition: max-height 0.4s, padding 0.4s;
+      transition: all 0.3s ease;
+      padding: 0 1.25rem;
+      color: var(--text-secondary);
     }
-    .faq-answer.open {
-      max-height: 500px;
-      padding: 1rem 1.5rem;
+
+    .faq-answer.active {
+      max-height: 200px;
+      padding: 0 1.25rem 1.25rem;
     }
-    footer {
-      background: #0f172a;
-      color: #94a3b8;
-      text-align: center;
-      font-weight: 500;
-      font-size: 0.98rem;
-      padding: 2.3rem 1rem 1.5rem;
-      user-select: none;
-      margin-top: auto;
-    }
-    .social-button {
+
+    .discord-btn {
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(90deg, #5865f2 60%, #4f46e5 100%);
-      color: #fff;
-      padding: 0.55rem 1.4rem;
-      border-radius: 9999px;
-      font-weight: 600;
-      font-size: 1.05rem;
+      gap: 0.75rem;
+      transition: all 0.3s ease;
+      margin: 2rem 0;
       text-decoration: none;
-      box-shadow: 0 0 15px #5865f2b3;
-      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
     }
-    .social-button:hover, .social-button:focus {
-      background: linear-gradient(90deg, #4752c4 0%, #8b5cf6 100%);
-      box-shadow: 0 0 25px #8b5cf6d6;
-      transform: scale(1.07);
+
+    .discord-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
     }
-    .social-icon {
-      width: 21px; height: 21px;
-      fill: currentColor;
+
+    .footer {
+      background: rgba(3, 7, 18, 0.9);
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--text-secondary);
+      margin-top: auto;
+      border-top: 1px solid rgba(88, 101, 242, 0.1);
     }
-    @media (max-width: 900px) {
-      main {
-        max-width: 100vw;
-        padding: 7rem 0.5rem 2.5rem;
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.5rem;
       }
-      section.features, section.faq-container {
-        max-width: 98vw;
-        padding: 0 0.5rem;
+
+      .hero {
+        padding: 6rem 1rem 3rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+      }
+
+      .faq {
+        padding: 2rem 1rem;
+      }
+
+      .faq-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
       }
     }
-    @media (max-width: 640px) {
-      nav {
-        flex-direction: column;
-        gap: 0.8rem;
-        padding: 0.7rem 0.5rem;
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0.5rem 1rem;
       }
-      h1 { font-size: 2.15rem; }
-      main { padding-top: 5rem; }
-      section.features { gap: 1rem; }
-      .feature-card { padding: 1rem 0.4rem; }
-      h2.faq-title { font-size: 1.2rem; }
-      .faq-question { font-size: 1rem; padding: 0.9rem 1rem; }
-      .faq-answer { font-size: 0.97rem; padding: 0 1rem;}
-      .faq-answer.open { padding: 0.8rem 1rem;}
-      .social-button { font-size: 0.98rem; padding: 0.5rem 1rem; }
-      .social-icon { width: 17px; height: 17px;}
-    }
-    @media (max-width: 375px) {
-      h1 { font-size: 1.25rem; }
-      h2.faq-title { font-size: 1rem; }
-      .feature-title { font-size: 1.08rem; }
-      .feature-card { padding: 0.7rem 0.1rem; }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .discord-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
 <body>
-<header>
-  <nav>
-    <a href="#" aria-label="HQ SERVICE Home" class="flex items-center gap-3 select-none">
-      <img id="logo-img" src="https://cdn.discordapp.com/attachments/1398990540464328875/1401489374855565464/20250802_1645_Lightning_Bolt_Logo_Redesign_simple_compose_01k1n63v27e399cp4fpfzsq0z5.png?ex=68907631&is=688f24b1&hm=dc978f226fe9cc256f6b1f0f41250c9dc5a6bd91263f80887c919b3c53954376" alt="HQ SERVICE Logo" />
-      <span class="text-white font-extrabold text-xl">HQ SERVICE</span>
-    </a>
-    <a href="mailto:tickets@hq-service-support-z1nr9z.p.tawk.email" class="btn-primary" aria-label="Contact Support Email">
+  <header class="navbar">
+    <nav class="nav-container">
+      <a href="#" class="logo-wrapper">
+        <img class="logo-img" src="https://cdn.discordapp.com/attachments/1398990540464328875/1401489374855565464/20250802_1645_Lightning_Bolt_Logo_Redesign_simple_compose_01k1n63v27e399cp4fpfzsq0z5.png?ex=68907631&is=688f24b1&hm=dc978f226fe9cc256f6b1f0f41250c9dc5a6bd91263f80887c919b3c53954376&" alt="HQ SERVICE Logo">
+        <span class="font-bold text-xl">HQ SERVICE</span>
+      </a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to HQ Service Support</h1>
+    <p>Get instant support and expert solutions, available 24/7.</p>
+    <a href="https://discord.hqservice.top/" class="btn btn-primary">
       Contact Support
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="inline-block w-5 h-5 ml-1">
-        <path d="M16 12H8m8 0l-4-4m4 4l-4 4"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
     </a>
-  </nav>
-</header>
+  </section>
 
-<main>
-  <h1>Elite Support Center for HQ SERVICE</h1>
-  <p>
-    Experience lightning-fast, professional support &amp; comprehensive help resources.<br />
-    Our team is ready 24/7 to assist you with any questions or issues.
-  </p>
-  <a href="mailto:tickets@hq-service-support-z1nr9z.p.tawk.email" class="btn-primary" aria-label="Get Support Now">
-    Get Support Now
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="inline-block w-5 h-5 ml-1">
-      <path d="M16 12H8m8 0l-4-4m4 4l-4 4"/>
-    </svg>
-  </a>
-</main>
+  <section class="faq">
+    <h2 class="faq-title">Common Questions</h2>
+    <div id="faq-container"></div>
+  </section>
 
-<section class="features" aria-label="Support Features">
-  <article class="feature-card" tabindex="0">
-    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3" />
-      <circle cx="12" cy="12" r="9" />
-    </svg>
-    <h3 class="feature-title">Lightning Fast Response</h3>
-    <p class="feature-desc">Our expert team replies within 24 business hours.</p>
-  </article>
-  <article class="feature-card" tabindex="0">
-    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-    </svg>
-    <h3 class="feature-title">Comprehensive FAQs</h3>
-    <p class="feature-desc">Find answers instantly with our detailed FAQ section.</p>
-  </article>
-  <article class="feature-card" tabindex="0">
-    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-9.192 9.192M12 7v6" />
-    </svg>
-    <h3 class="feature-title">24/7 Live Chat Support</h3>
-    <p class="feature-desc">Chat instantly with our support team anytime, anywhere.</p>
-  </article>
-</section>
+  <div class="text-center">
+    <a href="https://discord.hqservice.top/" class="discord-btn" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 71 55" fill="currentColor">
+        <path d="M60.1 4.9A58.9 58.9 0 0 0 46.2.4c-.2.4-.5.9-.6 1.3-4.3-.7-8.6-.7-13 0-.2-.4-.4-.9-.6-1.3A58.9 58.9 0 0 0 16.9 5C2.7 27.2-.6 48.8.2 70c7.7 5.6 18.7 9 29.7 9 .9 0 1.8 0 2.6-.1a40.2 40.2 0 0 0 17.4-5.1c4.2-3.2 7.5-7.3 9.8-12 .6-1.4 1.2-2.8 1.8-4.2.1-6.8-.1-13.7-.6-20.6zM26.5 36c-3.6 0-6.5-3.3-6.5-7.4 0-4 2.9-7.3 6.5-7.3 3.6 0 6.6 3.3 6.5 7.3 0 4.1-2.9 7.4-6.5 7.4zm20 0c-3.6 0-6.5-3.3-6.5-7.4 0-4 2.9-7.3 6.5-7.3 3.6 0 6.6 3.3 6.5 7.3 0 4.1-2.9 7.4-6.5 7.4z"/>
+      </svg>
+      Join our Discord
+    </a>
+  </div>
 
-<section class="faq-container" aria-label="Frequently Asked Questions">
-  <h2 class="faq-title">Frequently Asked Questions</h2>
-  <div id="faq-container" tabindex="0" aria-live="polite" aria-relevant="additions"></div>
-</section>
+  <footer class="footer">
+    <p>© 2025 HQ SERVICE. All rights reserved.</p>
+    <p class="mt-2 text-sm">Last Updated: 2025-08-03 15:42:13 UTC</p>
+    <p class="mt-1 text-sm">Created by: Synq-dev</p>
+  </footer>
 
-<section class="text-center mb-20">
-  <a href="https://discord.hqservice.top/" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="Join HQ SERVICE Discord">
-    <svg class="social-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 55"><path d="M60.104 4.552A58.852 58.852 0 0046.167 0c-.222.38-.47.887-.64 1.28-4.294-.658-8.623-.658-12.916 0-.17-.394-.418-.9-.64-1.28A58.906 58.906 0 0010.9 4.552C2.865 19.004-.516 33.123.16 47.094 9.432 52.638 18.627 55 27.839 55c.887 0 1.765-.035 2.626-.105a40.163 40.163 0 0017.429-5.095c4.154-3.19 7.457-7.267 9.8-12.042a59.775 59.775 0 001.793-4.16 58.338 58.338 0 00.097-20.61zm-33.6 30.855c-3.595 0-6.532-3.29-6.532-7.34s2.916-7.34 6.532-7.34c3.63 0 6.558 3.29 6.532 7.34 0 4.05-2.902 7.34-6.532 7.34zm20.022 0c-3.595 0-6.532-3.29-6.532-7.34s2.916-7.34 6.532-7.34c3.63 0 6.558 3.29 6.532 7.34 0 4.05-2.902 7.34-6.532 7.34z"/></svg>
-    Join our Discord
-  </a>
-</section>
-
-<footer>
-  <p>© 2025 HQ SERVICE. All rights reserved.</p>
-</footer>
-
-<script>
-  // FAQ Data
-  const faqData = [
-    {
-      question: "How can I contact support?",
-      answer:
-        "Use our live chat at the bottom-right or email us anytime at tickets@hq-service-support-z1nr9z.p.tawk.email.",
-    },
-    {
-      question: "Do you offer refunds?",
-      answer:
-        "No. All sales are final according to our Terms of Service.",
-    },
-    {
-      question: "What is the average response time?",
-      answer:
-        "Our team replies within 24 business hours during working days.",
-    },
-    {
-      question: "Is there 24/7 live chat support?",
-      answer:
-        "Yes, our live chat is available 24/7 for instant assistance.",
-    },
-  ];
-
-  const faqContainer = document.getElementById("faq-container");
-
-  faqData.forEach(({ question, answer }, index) => {
-    const item = document.createElement("section");
-    item.classList.add("faq-item");
-
-    const questionBtn = document.createElement("button");
-    questionBtn.className = "faq-question";
-    questionBtn.type = "button";
-    questionBtn.setAttribute("aria-expanded", "false");
-    questionBtn.setAttribute("aria-controls", `faq-answer-${index}`);
-    questionBtn.id = `faq-question-${index}`;
-    questionBtn.textContent = question;
-
-    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    icon.setAttribute("viewBox", "0 0 24 24");
-    icon.setAttribute("fill", "none");
-    icon.setAttribute("stroke", "currentColor");
-    icon.setAttribute("stroke-width", "3");
-    icon.setAttribute("stroke-linecap", "round");
-    icon.setAttribute("stroke-linejoin", "round");
-    icon.classList.add("ml-3");
-    icon.style.width = "24px";
-    icon.style.height = "24px";
-
-    const path1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    path1.setAttribute("x1", "12");
-    path1.setAttribute("y1", "5");
-    path1.setAttribute("x2", "12");
-    path1.setAttribute("y2", "19");
-
-    const path2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    path2.setAttribute("x1", "5");
-    path2.setAttribute("y1", "12");
-    path2.setAttribute("x2", "19");
-    path2.setAttribute("y2", "12");
-
-    icon.appendChild(path1);
-    icon.appendChild(path2);
-
-    questionBtn.appendChild(icon);
-
-    const answerDiv = document.createElement("div");
-    answerDiv.id = `faq-answer-${index}`;
-    answerDiv.className = "faq-answer";
-    answerDiv.setAttribute("role", "region");
-    answerDiv.setAttribute("aria-labelledby", `faq-question-${index}`);
-    answerDiv.textContent = answer;
-
-    questionBtn.addEventListener("click", () => {
-      const isOpen = questionBtn.classList.contains("open");
-      if (isOpen) {
-        questionBtn.classList.remove("open");
-        questionBtn.setAttribute("aria-expanded", "false");
-        answerDiv.classList.remove("open");
-      } else {
-        questionBtn.classList.add("open");
-        questionBtn.setAttribute("aria-expanded", "true");
-        answerDiv.classList.add("open");
+  <script>
+    const faqData = [
+      {
+        question: "How can I contact support?",
+        answer: "Join our Discord server for instant support at discord.hqservice.top"
+      },
+      {
+        question: "What are your support hours?",
+        answer: "Our support team is available 24/7 through Discord for instant assistance."
+      },
+      {
+        question: "Do you offer refunds?",
+        answer: "No, all sales are final according to our Terms of Service."
+      },
+      {
+        question: "What's the average response time?",
+        answer: "We typically respond within minutes during peak hours and within 24 hours maximum."
       }
+    ];
+
+    const faqContainer = document.getElementById('faq-container');
+
+    faqData.forEach((item, index) => {
+      const faqItem = document.createElement('div');
+      faqItem.className = 'faq-item';
+      
+      const question = document.createElement('button');
+      question.className = 'faq-question';
+      question.innerHTML = `
+        ${item.question}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      `;
+      
+      const answer = document.createElement('div');
+      answer.className = 'faq-answer';
+      answer.textContent = item.answer;
+      
+      question.addEventListener('click', () => {
+        const isActive = answer.classList.contains('active');
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+        document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+        if (!isActive) {
+          answer.classList.add('active');
+          question.classList.add('active');
+        }
+      });
+      
+      faqItem.appendChild(question);
+      faqItem.appendChild(answer);
+      faqContainer.appendChild(faqItem);
     });
+  </script>
 
-    item.appendChild(questionBtn);
-    item.appendChild(answerDiv);
-    faqContainer.appendChild(item);
-  });
-</script>
-
-<!-- Tawk.to live chat embed -->
-<script type="text/javascript">
-  var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
-    s1.src="https://embed.tawk.to/688f2382ddd4a019266fe5e5/default";
-    s1.charset="UTF-8";
-    s1.setAttribute("crossorigin","*");
+    s1.src='https://embed.tawk.to/688f230c88d9b3192aa835e7/1j1ni1r9c';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
   })();
-</script>
-
-<!-- Discord Webhook Visitor Ping -->
-<script>
-  (async () => {
-    const WEBHOOK_URL = "https://discord.com/api/webhooks/1401182674110124134/MB5cC2CSmhj7bmn7e0LGKiUuR5-mJzYFpRABjlXJ-oQo3AW6sOd236s14xHZnXlfCjmn";
-    const PING_ID = "1335860528593240085";
-
-    let geoInfo = {};
-    try {
-      const res = await fetch("https://ipapi.co/json/");
-      geoInfo = res.ok ? await res.json() : {};
-    } catch {}
-
-    const embed = {
-      title: "👀 New Visitor on HQ SERVICE Support Page",
-      description: `<@${PING_ID}>`,
-      color: 3447003,
-      fields: [
-        { name: "IP Address", value: geoInfo.ip || "Unknown", inline: true },
-        { name: "Location", value: geoInfo.city ? `${geoInfo.city}, ${geoInfo.region}, ${geoInfo.country_name}` : "Unknown", inline: true },
-        { name: "ISP", value: geoInfo.org || "Unknown", inline: true },
-        { name: "User Agent", value: navigator.userAgent || "Unknown" }
-      ],
-      timestamp: new Date().toISOString(),
-      footer: { text: "HQ SERVICE Logs" },
-    };
-
-    try {
-      await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ embeds: [embed] }),
-      });
-    } catch (e) {
-      // do nothing
-    }
-  })();
-</script>
+  </script>
+  <!--End of Tawk.to Script-->
 
 </body>
 </html>
