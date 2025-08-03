@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,20 +13,15 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e40af);
+      background: linear-gradient(135deg, #0f172a, #1e40af 75%, #2563eb 100%);
       color: #e0e7ff;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      margin: 0; padding: 0;
+      display: flex; flex-direction: column;
       overflow-x: hidden;
-      margin: 0;
-      padding: 0;
     }
     ::-webkit-scrollbar {
       width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
     }
     ::-webkit-scrollbar-thumb {
       background: #2563eb;
@@ -35,23 +30,20 @@
       background-clip: content-box;
     }
     header {
-      backdrop-filter: saturate(180%) blur(20px);
-      background: rgba(15, 23, 42, 0.8);
-      box-shadow: 0 0 15px rgb(37 99 235 / 0.4);
+      position: fixed; top: 0; left: 0; width: 100%;
       z-index: 1000;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(20px) saturate(200%);
+      box-shadow: 0 0 16px #2563eb66;
+      transition: background 0.3s;
     }
     #logo-img {
-      filter: drop-shadow(0 0 5px #3b82f6);
-      transition: filter 0.3s ease;
-      height: 44px;
-      width: 44px;
+      filter: drop-shadow(0 0 6px #3b82f6);
+      transition: filter 0.3s;
+      height: 44px; width: 44px;
     }
     #logo-img:hover {
-      filter: drop-shadow(0 0 15px #60a5fa);
+      filter: drop-shadow(0 0 16px #60a5fa);
     }
     nav {
       max-width: 1200px;
@@ -62,51 +54,48 @@
       justify-content: space-between;
     }
     .btn-primary {
-      background-color: #2563eb;
-      color: white;
-      font-weight: 600;
+      background: linear-gradient(90deg, #2563eb 20%, #60a5fa 100%);
+      color: #fff;
+      font-weight: 700;
       padding: 0.5rem 1.5rem;
       border-radius: 9999px;
-      box-shadow: 0 4px 15px rgb(37 99 235 / 0.6);
-      transition: all 0.3s ease;
-      user-select: none;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+      box-shadow: 0 4px 16px #2563eb99;
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
       text-decoration: none;
+      font-size: 1rem;
+      position: relative;
+      overflow: hidden;
     }
     .btn-primary:hover {
-      background-color: #60a5fa;
-      box-shadow: 0 0 20px #60a5fa;
-      transform: translateY(-2px);
+      background: linear-gradient(90deg, #60a5fa 0%, #2563eb 80%);
+      box-shadow: 0 0 24px #60a5fa;
+      transform: translateY(-2px) scale(1.03);
     }
     main {
-      padding: 6.5rem 1rem 3rem;
+      padding: 7rem 1rem 3rem;
       text-align: center;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: linear-gradient(135deg, #0f172a, #1e40af);
-      color: white;
+      flex: 1 0 auto;
+      display: flex; flex-direction: column; justify-content: center;
+      background: linear-gradient(135deg, #0f172a 70%, #1e40af 100%);
+      color: #fff;
       max-width: 900px;
       margin: 0 auto;
     }
     h1 {
       font-weight: 800;
       font-size: 3.75rem;
-      line-height: 1.1;
       margin-bottom: 1rem;
       text-shadow: 0 0 15px #2563eb;
       user-select: none;
+      letter-spacing: -2px;
     }
     p {
       font-weight: 500;
-      font-size: 1.125rem;
+      font-size: 1.2rem;
       color: #bfdbfe;
       margin-bottom: 2rem;
-      max-width: 600px;
+      max-width: 640px;
       margin-left: auto;
       margin-right: auto;
       user-select: none;
@@ -114,28 +103,29 @@
     section.features {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-      gap: 2rem;
+      gap: 2.2rem;
       max-width: 1000px;
-      margin: 3rem auto;
+      margin: 3rem auto 0;
       padding: 0 1rem;
     }
     .feature-card {
-      background: rgba(31, 41, 55, 0.75);
-      border-radius: 1rem;
-      padding: 2rem 1.5rem;
+      background: rgba(31,41,55,0.80);
+      border-radius: 1.25rem;
+      padding: 2.2rem 1.5rem;
       text-align: center;
-      box-shadow: 0 0 25px rgb(37 99 235 / 0.3);
-      transition: box-shadow 0.3s ease;
+      box-shadow: 0 0 32px #2563eb33;
+      transition: box-shadow 0.3s, transform 0.25s;
       user-select: none;
     }
-    .feature-card:hover {
-      box-shadow: 0 0 35px #60a5fa;
+    .feature-card:hover, .feature-card:focus {
+      box-shadow: 0 0 36px #60a5fa;
+      transform: scale(1.035);
+      outline: 2px solid #60a5fa44;
     }
     .feature-icon {
-      width: 60px;
-      height: 60px;
+      width: 60px; height: 60px;
       stroke: #60a5fa;
-      margin-bottom: 1rem;
+      margin-bottom: 1.15rem;
     }
     .feature-title {
       font-weight: 700;
@@ -146,7 +136,7 @@
     .feature-desc {
       color: #bfdbfe;
       font-weight: 400;
-      font-size: 1rem;
+      font-size: 1.04rem;
       line-height: 1.5;
     }
     section.faq-container {
@@ -158,57 +148,60 @@
     h2.faq-title {
       font-weight: 800;
       font-size: 2.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       text-align: center;
       color: #e0e7ff;
-      text-shadow: 0 0 8px #2563eb;
+      text-shadow: 0 0 10px #2563eb;
     }
     .faq-item {
-      background: rgba(31, 41, 55, 0.65);
-      margin-bottom: 1rem;
-      border-radius: 0.75rem;
+      background: rgba(31,41,55,0.68);
+      margin-bottom: 1.2rem;
+      border-radius: 0.85rem;
       overflow: hidden;
-      box-shadow: 0 0 15px rgb(37 99 235 / 0.25);
-      transition: box-shadow 0.3s ease;
+      box-shadow: 0 0 15px #2563eb40;
+      transition: box-shadow 0.3s;
     }
     .faq-question {
-      padding: 1rem 1.5rem;
+      padding: 1.1rem 1.5rem;
       font-weight: 600;
-      font-size: 1.125rem;
+      font-size: 1.14rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
       color: #bfdbfe;
-      transition: background-color 0.25s ease;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background 0.24s;
       user-select: none;
     }
-    .faq-question:hover {
+    .faq-question:hover, .faq-question.open {
       background-color: #2563eb;
-      color: white;
+      color: #fff;
     }
     .faq-question svg {
-      transition: transform 0.3s ease;
+      transition: transform 0.3s, stroke 0.3s;
       stroke: #bfdbfe;
-      width: 20px;
-      height: 20px;
+      width: 20px; height: 20px;
     }
     .faq-question.open svg {
       transform: rotate(45deg);
-      stroke: white;
+      stroke: #fff;
     }
     .faq-answer {
       max-height: 0;
       padding: 0 1.5rem;
       color: #cbd5e1;
       font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.5;
+      font-size: 1.04rem;
+      line-height: 1.55;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s ease;
+      transition: max-height 0.4s, padding 0.4s;
     }
     .faq-answer.open {
-      max-height: 500px; /* enough for content */
+      max-height: 500px;
       padding: 1rem 1.5rem;
     }
     footer {
@@ -216,57 +209,49 @@
       color: #94a3b8;
       text-align: center;
       font-weight: 500;
-      font-size: 0.9rem;
-      padding: 2rem 1rem;
+      font-size: 0.98rem;
+      padding: 2.3rem 1rem 1.5rem;
       user-select: none;
+      margin-top: auto;
     }
     .social-button {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background-color: #5865f2;
-      color: white;
-      padding: 0.5rem 1.25rem;
+      background: linear-gradient(90deg, #5865f2 60%, #4f46e5 100%);
+      color: #fff;
+      padding: 0.55rem 1.4rem;
       border-radius: 9999px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.05rem;
       text-decoration: none;
-      box-shadow: 0 0 15px rgb(88 101 242 / 0.7);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
+      box-shadow: 0 0 15px #5865f2b3;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
     }
-    .social-button:hover {
-      background-color: #4752c4;
-      box-shadow: 0 0 25px rgb(88 101 242 / 0.9);
-      transform: scale(1.05);
+    .social-button:hover, .social-button:focus {
+      background: linear-gradient(90deg, #4752c4 0%, #8b5cf6 100%);
+      box-shadow: 0 0 25px #8b5cf6d6;
+      transform: scale(1.07);
     }
     .social-icon {
-      width: 20px;
-      height: 20px;
+      width: 21px; height: 21px;
       fill: currentColor;
     }
-
-    /* Responsive tweaks */
     @media (max-width: 640px) {
-      h1 {
-        font-size: 2.75rem;
-      }
-      section.features {
-        gap: 1.5rem;
-      }
-      .feature-card {
-        padding: 1.5rem 1rem;
-      }
+      h1 { font-size: 2.3rem; }
+      main { padding-top: 5.5rem; }
+      section.features { gap: 1.3rem; }
+      .feature-card { padding: 1.2rem 0.7rem; }
+      h2.faq-title { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
-
 <header>
   <nav>
-    <a href="#" aria-label="HQ SERVICE Home" class="flex items-center gap-3">
+    <a href="#" aria-label="HQ SERVICE Home" class="flex items-center gap-3 select-none">
       <img id="logo-img" src="https://cdn.discordapp.com/attachments/1398990540464328875/1401489374855565464/20250802_1645_Lightning_Bolt_Logo_Redesign_simple_compose_01k1n63v27e399cp4fpfzsq0z5.png?ex=68907631&is=688f24b1&hm=dc978f226fe9cc256f6b1f0f41250c9dc5a6bd91263f80887c919b3c53954376" alt="HQ SERVICE Logo" />
-      <span class="text-white font-extrabold text-xl select-none">HQ SERVICE</span>
+      <span class="text-white font-extrabold text-xl">HQ SERVICE</span>
     </a>
     <a href="mailto:tickets@hq-service-support-z1nr9z.p.tawk.email" class="btn-primary" aria-label="Contact Support Email">
       Contact Support
@@ -293,24 +278,22 @@
 
 <section class="features" aria-label="Support Features">
   <article class="feature-card" tabindex="0">
-    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" >
+    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3" />
       <circle cx="12" cy="12" r="9" />
     </svg>
     <h3 class="feature-title">Lightning Fast Response</h3>
     <p class="feature-desc">Our expert team replies within 24 business hours.</p>
   </article>
-
   <article class="feature-card" tabindex="0">
-    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" >
+    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
     </svg>
     <h3 class="feature-title">Comprehensive FAQs</h3>
     <p class="feature-desc">Find answers instantly with our detailed FAQ section.</p>
   </article>
-
   <article class="feature-card" tabindex="0">
-    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" >
+    <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-9.192 9.192M12 7v6" />
     </svg>
     <h3 class="feature-title">24/7 Live Chat Support</h3>
@@ -430,54 +413,10 @@
 <!-- Tawk.to live chat embed -->
 <script type="text/javascript">
   var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-  (function () {
-    var s1 = document.createElement("script"),
-      s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = "https://embed.tawk.to/688f2382ddd4a019266fe5e5/default";
-    s1.charset = "UTF-8";
-    s1.setAttribute("crossorigin", "*");
-    s0.parentNode.insertBefore(s1, s0);
-  })();
-</script>
-
-<!-- Discord Webhook Visitor Ping -->
-<script>
-  (async () => {
-    const WEBHOOK_URL = "https://discord.com/api/webhooks/1401182674110124134/MB5cC2CSmhj7bmn7e0LGKiUuR5-mJzYFpRABjlXJ-oQo3AW6sOd236s14xHZnXlfCjmn";
-    const PING_ID = "1335860528593240085";
-
-    let geoInfo = {};
-    try {
-      const res = await fetch("https://ipapi.co/json/");
-      geoInfo = res.ok ? await res.json() : {};
-    } catch {}
-
-    const embed = {
-      title: "👀 New Visitor on HQ SERVICE Support Page",
-      description: `<@${PING_ID}>`,
-      color: 3447003,
-      fields: [
-        { name: "IP Address", value: geoInfo.ip || "Unknown", inline: true },
-        { name: "Location", value: geoInfo.city ? `${geoInfo.city}, ${geoInfo.region}, ${geoInfo.country_name}` : "Unknown", inline: true },
-        { name: "ISP", value: geoInfo.org || "Unknown", inline: true },
-        { name: "User Agent", value: navigator.userAgent || "Unknown" }
-      ],
-      timestamp: new Date().toISOString(),
-      footer: { text: "HQ SERVICE Logs" },
-    };
-
-    try {
-      await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ embeds: [embed] }),
-      });
-    } catch (e) {
-      console.warn("Webhook send failed", e);
-    }
-  })();
-</script>
-
-</body>
-</html>
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src="https://embed.tawk.to/688f2382ddd4a019266fe5e5/default";
+    s1.charset="UTF-8";
+    s1.setAttribute("crossorigin","*");
+    s0.parent
